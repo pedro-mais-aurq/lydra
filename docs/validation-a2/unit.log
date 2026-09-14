@@ -1,0 +1,14 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> lydra-mvp-foundation@0.1.0 test:unit
+> vitest run tests/unit
+
+
+ RUN  v4.1.11 /workspace/scratch/f439e66fe581/work/a2/lydra
+
+
+ Test Files  11 passed (11)
+      Tests  90 passed (90)
+   Start at  16:33:44
+   Duration  882ms (transform 1.32s, setup 278ms, import 1.91s, tests 305ms, environment 2ms)
+

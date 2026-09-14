@@ -1,0 +1,7 @@
+
+> lydra-mvp-foundation@0.1.0 test:smoke
+> node scripts/smoke-http.mjs
+
+Production HTTP smoke passed: homepage + all 4 protected handlers reject unauthenticated requests.
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.

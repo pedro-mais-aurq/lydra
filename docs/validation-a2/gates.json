@@ -1,0 +1,83 @@
+{
+  "audit": {
+    "command": "npm audit --json",
+    "exitCode": 0,
+    "seconds": 10.95
+  },
+  "lint": {
+    "command": "npm run lint",
+    "exitCode": 0,
+    "seconds": 2.88
+  },
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "seconds": 3.74
+  },
+  "unit": {
+    "command": "npm run test:unit",
+    "exitCode": 0,
+    "seconds": 1.48
+  },
+  "supabase-start": {
+    "command": "npx --no-install supabase start -x studio,postgres-meta,logflare,vector,realtime,edge-runtime,mailpit,imgproxy,supavisor",
+    "exitCode": 1,
+    "seconds": 3.02
+  },
+  "migrations-reset": {
+    "command": "npm run test:migrations",
+    "exitCode": 1,
+    "seconds": 2.87
+  },
+  "integration": {
+    "command": "npm run test:integration",
+    "exitCode": 1,
+    "seconds": 1.12
+  },
+  "supabase-tests": {
+    "command": "npm run test:security",
+    "exitCode": 1,
+    "seconds": 3.13
+  },
+  "db-lint": {
+    "command": "npx --no-install supabase db lint --local --fail-on warning",
+    "exitCode": 1,
+    "seconds": 2.92
+  },
+  "performance-inspect": {
+    "command": "npx --no-install supabase inspect db index-stats --local",
+    "exitCode": 1,
+    "seconds": 2.97
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "seconds": 19.34
+  },
+  "smoke": {
+    "command": "npm run test:smoke",
+    "exitCode": 0,
+    "seconds": 6.45
+  },
+  "smoke-authenticated": {
+    "command": "npm run test:smoke:security",
+    "exitCode": 1,
+    "seconds": 2.94
+  },
+  "install": {
+    "command": "npm ci",
+    "exitCode": 0
+  },
+  "security-advisors": {
+    "status": "NOT_EXECUTED",
+    "reason": "Nenhum projeto Supabase Lydra identificado; stack local ausente."
+  },
+  "performance-advisors": {
+    "status": "NOT_EXECUTED",
+    "reason": "Nenhum projeto Supabase Lydra identificado; stack local ausente."
+  },
+  "ci": {
+    "status": "NOT_EXECUTED",
+    "reason": "Nenhum repositório GitHub Lydra identificado/vinculado a este ZIP; nenhum run id."
+  }
+}

@@ -1,0 +1,10 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+ RUN  v4.1.11 /workspace/scratch/2e2068085cef/lydra
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  23:29:19
+   Duration  383ms (transform 205ms, setup 24ms, import 231ms, tests 6ms, environment 0ms)
+

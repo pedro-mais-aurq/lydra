@@ -1,0 +1,7 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> lydra-mvp-foundation@0.1.0 audit:dependencies
+> npm audit --audit-level=moderate
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+found 0 vulnerabilities

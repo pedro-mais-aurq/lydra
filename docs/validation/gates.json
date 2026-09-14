@@ -1,0 +1,50 @@
+[
+  {
+    "gate": "audit",
+    "command": "npm audit --json --audit-level=moderate",
+    "exitCode": 0,
+    "seconds": 11.8
+  },
+  {
+    "gate": "lint",
+    "command": "npm run lint",
+    "exitCode": 0,
+    "seconds": 2.07
+  },
+  {
+    "gate": "typecheck",
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "seconds": 4.5
+  },
+  {
+    "gate": "unit",
+    "command": "npm run test:unit",
+    "exitCode": 0,
+    "seconds": 1.54
+  },
+  {
+    "gate": "integration",
+    "command": "npm run test:integration",
+    "exitCode": 1,
+    "seconds": 0.92
+  },
+  {
+    "gate": "migrations-reset",
+    "command": "npm run test:migrations",
+    "exitCode": 1,
+    "seconds": 3.3
+  },
+  {
+    "gate": "build",
+    "command": "npm run build",
+    "exitCode": 0,
+    "seconds": 20.8
+  },
+  {
+    "gate": "smoke",
+    "command": "npm run test:smoke",
+    "exitCode": 0,
+    "seconds": 5.84
+  }
+]

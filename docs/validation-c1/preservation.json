@@ -1,0 +1,26 @@
+{
+  "base": "lydra-parte-a2-final.zip",
+  "base_sha256": "687d8129d39964ad86ac85b06600dd06304e3b397f5b7d80bcf66ad4e192cbca",
+  "base_files": 133,
+  "unchanged_files": 131,
+  "modified_files": [
+    "src/core/repositories/comparisons.repository.ts",
+    "src/core/repositories/quote-documents.repository.ts"
+  ],
+  "deleted_files": [],
+  "b3_archive": "lydra-parte-b3-final.zip",
+  "b3_archive_sha256": "87cdbd3656d788ac05a66d7d9d5159b8ec19acb7c3322b662a99f036452e59ee",
+  "b3_imported_files": 58,
+  "b3_modified_imported_files": [],
+  "b3_omissions_restored_from_a2": [
+    ".github/workflows/ci.yml",
+    ".gitignore",
+    "supabase/.gitignore"
+  ],
+  "b3_generated_cache_excluded": [
+    "tsconfig.tsbuildinfo"
+  ],
+  "new_migrations": [],
+  "dependencies_changed": false,
+  "old_c_code_imported": false
+}

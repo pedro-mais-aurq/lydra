@@ -1,0 +1,35 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> lydra-mvp-foundation@0.1.0 test:unit
+> vitest run tests/unit
+
+
+ RUN  v4.1.11 /workspace/scratch/2e2068085cef/lydra
+
+ ❯ tests/unit/product/pipeline.test.ts (2 tests | 1 failed) 63ms
+     × creates/uploads/processes then reconstructs persisted result via GET 39ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/product/pipeline.test.ts > product → real HTTP handlers → B3 → C > creates/uploads/processes then reconstructs persisted result via GET
+AssertionError: expected 'e0802de6-2660-44be-8283-cbead232de8d' to be 'ffaa5524-cbb8-4e3f-bd42-183ca82c7272' // Object.is equality
+
+Expected: "ffaa5524-cbb8-4e3f-bd42-183ca82c7272"
+Received: "e0802de6-2660-44be-8283-cbead232de8d"
+
+ ❯ tests/unit/product/pipeline.test.ts:58:73
+     56|     const result = await comparisonApi.get(created.id); expect(result.…
+     57|     expect(result.result?.suppliers.map((supplier) => supplier.costAss…
+     58|     expect(result.result?.highlights.lowestCompleteKnownCostDocumentId…
+       |                                                                         ^
+     59|     expect(sequence.slice(0, 5)).toEqual(["create", "upload", "upload"…
+     60|     await comparisonApi.get(created.id); expect(h.provider.extract).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 27 passed (28)
+      Tests  1 failed | 398 passed (399)
+   Start at  23:28:29
+   Duration  1.44s (transform 1.78s, setup 415ms, import 3.49s, tests 963ms, environment 3ms)
+

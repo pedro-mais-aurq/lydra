@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> lydra-mvp-foundation@0.1.0 test:smoke
+> node scripts/smoke-http.mjs
+
+Production HTTP public smoke passed: homepage, 4 unauthenticated routes, 6 malformed cookie cases.

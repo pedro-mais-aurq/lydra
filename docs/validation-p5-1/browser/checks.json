@@ -1,0 +1,38 @@
+[
+  {
+    "name": "landing desktop and mobile preserve D",
+    "status": "PASS"
+  },
+  {
+    "name": "anonymous session, create, 3 multipart uploads, process, result, refresh",
+    "status": "PASS"
+  },
+  {
+    "name": "title and 1/2/4/5-file UI validation; oversized/unsupported rejection",
+    "status": "PASS"
+  },
+  {
+    "name": "partial upload failure preserves first document and never calls process",
+    "status": "PASS"
+  },
+  {
+    "name": "transient failure retry reuses comparison and uploads",
+    "status": "PASS"
+  },
+  {
+    "name": "nonretryable provider failure does not offer retry",
+    "status": "PASS"
+  },
+  {
+    "name": "direct completed processing URL redirects through GET without process",
+    "status": "PASS"
+  },
+  {
+    "name": "direct failed URL without cached retry metadata stays read-only",
+    "status": "PASS"
+  },
+  {
+    "name": "Auth failure blocks product requests",
+    "status": "PASS"
+  }
+]

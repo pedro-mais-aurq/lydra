@@ -1,0 +1,2 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+JSON report written to /workspace/scratch/2e2068085cef/lydra/docs/validation-p5-1/integration-results.json

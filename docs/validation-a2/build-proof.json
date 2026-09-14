@@ -1,0 +1,11 @@
+{
+  "buildId": "XAMMHj0gZMZ6NO1eyoNCU",
+  "middlewarePages": [
+    "/"
+  ],
+  "middlewareFiles": [
+    "server/edge-runtime-webpack.js",
+    "server/src/middleware.js"
+  ],
+  "buildExitCode": 0
+}

@@ -1,0 +1,108 @@
+
+> lydra-mvp-foundation@0.1.0 test:integration
+> vitest run tests/integration
+
+
+ RUN  v4.1.11 /workspace/scratch/f439e66fe581/work/lydra
+
+ ❯ tests/integration/migrations.test.ts (0 test)
+ ❯ tests/integration/rls.test.ts (0 test)
+ ❯ tests/integration/repositories.test.ts (0 test)
+ ❯ tests/integration/cross-owner-fk.test.ts (0 test)
+ ❯ tests/integration/storage.test.ts (0 test)
+ ❯ tests/integration/http.test.ts (0 test)
+
+ Test Files  6 failed (6)
+      Tests  no tests
+   Start at  15:47:21
+   Duration  394ms (transform 363ms, setup 203ms, import 0ms, tests 0ms, environment 1ms)
+
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/cross-owner-fk.test.ts [ tests/integration/cross-owner-fk.test.ts ]
+Error: INTEGRATION_INFRASTRUCTURE_REQUIRED: run supabase start, npm run test:migrations, then node scripts/run-local-integration.mjs. No security tests were validated.
+ ❯ requireIntegrationEnv tests/integration/helpers.ts:14:11
+     12|   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+     13|   if (!url || !anonKey || !serviceKey) {
+     14|     throw new Error("INTEGRATION_INFRASTRUCTURE_REQUIRED: run supabase…
+       |           ^
+     15|   }
+     16|   if (!["localhost", "127.0.0.1", "[::1]"].includes(new URL(url).hostn…
+ ❯ tests/integration/helpers.ts:21:20
+ ❯ tests/integration/cross-owner-fk.test.ts:2:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/integration/http.test.ts [ tests/integration/http.test.ts ]
+Error: INTEGRATION_INFRASTRUCTURE_REQUIRED: run supabase start, npm run test:migrations, then node scripts/run-local-integration.mjs. No security tests were validated.
+ ❯ requireIntegrationEnv tests/integration/helpers.ts:14:11
+     12|   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+     13|   if (!url || !anonKey || !serviceKey) {
+     14|     throw new Error("INTEGRATION_INFRASTRUCTURE_REQUIRED: run supabase…
+       |           ^
+     15|   }
+     16|   if (!["localhost", "127.0.0.1", "[::1]"].includes(new URL(url).hostn…
+ ❯ tests/integration/helpers.ts:21:20
+ ❯ tests/integration/http.test.ts:4:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/integration/migrations.test.ts [ tests/integration/migrations.test.ts ]
+Error: INTEGRATION_INFRASTRUCTURE_REQUIRED: run supabase start, npm run test:migrations, then node scripts/run-local-integration.mjs. No security tests were validated.
+ ❯ requireIntegrationEnv tests/integration/helpers.ts:14:11
+     12|   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+     13|   if (!url || !anonKey || !serviceKey) {
+     14|     throw new Error("INTEGRATION_INFRASTRUCTURE_REQUIRED: run supabase…
+       |           ^
+     15|   }
+     16|   if (!["localhost", "127.0.0.1", "[::1]"].includes(new URL(url).hostn…
+ ❯ tests/integration/helpers.ts:21:20
+ ❯ tests/integration/migrations.test.ts:4:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/integration/repositories.test.ts [ tests/integration/repositories.test.ts ]
+Error: INTEGRATION_INFRASTRUCTURE_REQUIRED: run supabase start, npm run test:migrations, then node scripts/run-local-integration.mjs. No security tests were validated.
+ ❯ requireIntegrationEnv tests/integration/helpers.ts:14:11
+     12|   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+     13|   if (!url || !anonKey || !serviceKey) {
+     14|     throw new Error("INTEGRATION_INFRASTRUCTURE_REQUIRED: run supabase…
+       |           ^
+     15|   }
+     16|   if (!["localhost", "127.0.0.1", "[::1]"].includes(new URL(url).hostn…
+ ❯ tests/integration/helpers.ts:21:20
+ ❯ tests/integration/repositories.test.ts:3:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/integration/rls.test.ts [ tests/integration/rls.test.ts ]
+Error: INTEGRATION_INFRASTRUCTURE_REQUIRED: run supabase start, npm run test:migrations, then node scripts/run-local-integration.mjs. No security tests were validated.
+ ❯ requireIntegrationEnv tests/integration/helpers.ts:14:11
+     12|   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+     13|   if (!url || !anonKey || !serviceKey) {
+     14|     throw new Error("INTEGRATION_INFRASTRUCTURE_REQUIRED: run supabase…
+       |           ^
+     15|   }
+     16|   if (!["localhost", "127.0.0.1", "[::1]"].includes(new URL(url).hostn…
+ ❯ tests/integration/helpers.ts:21:20
+ ❯ tests/integration/rls.test.ts:2:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/integration/storage.test.ts [ tests/integration/storage.test.ts ]
+Error: INTEGRATION_INFRASTRUCTURE_REQUIRED: run supabase start, npm run test:migrations, then node scripts/run-local-integration.mjs. No security tests were validated.
+ ❯ requireIntegrationEnv tests/integration/helpers.ts:14:11
+     12|   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+     13|   if (!url || !anonKey || !serviceKey) {
+     14|     throw new Error("INTEGRATION_INFRASTRUCTURE_REQUIRED: run supabase…
+       |           ^
+     15|   }
+     16|   if (!["localhost", "127.0.0.1", "[::1]"].includes(new URL(url).hostn…
+ ❯ tests/integration/helpers.ts:21:20
+ ❯ tests/integration/storage.test.ts:3:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+

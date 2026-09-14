@@ -1,0 +1,7 @@
+
+> lydra-mvp-foundation@0.1.0 test:migrations
+> node scripts/reset-local-db.mjs
+
+{"_tag":"Error","error":{"code":"LegacyLocalDbRunningError","message":"failed to inspect service"}}
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.

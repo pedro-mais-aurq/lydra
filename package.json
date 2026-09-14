@@ -1,0 +1,50 @@
+{
+  "name": "lydra-mvp-foundation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:migrations": "node scripts/reset-local-db.mjs",
+    "test:security": "npm run test:migrations && node scripts/run-local-integration.mjs",
+    "audit:dependencies": "npm audit --audit-level=moderate",
+    "test:smoke": "node scripts/smoke-http.mjs",
+    "test:smoke:security": "node scripts/run-local-integration.mjs --smoke"
+  },
+  "dependencies": {
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.116.0",
+    "next": "15.5.25",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "server-only": "0.0.1",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@testing-library/react": "16.3.3",
+    "@types/node": "20.19.43",
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "eslint": "8.57.1",
+    "eslint-config-next": "15.5.25",
+    "supabase": "2.117.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11"
+  },
+  "overrides": {
+    "postcss": "8.5.28"
+  },
+  "engines": {
+    "node": ">=22.12.0 <25"
+  }
+}

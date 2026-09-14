@@ -1,0 +1,87 @@
+{
+  "hallucinated-supplier": {
+    "schemaVersion": 1,
+    "supplierName": "Evil Corp",
+    "displayedTotal": 4500,
+    "currency": "BRL",
+    "shipping": {
+      "status": "additional",
+      "amount": 200
+    },
+    "paymentTerms": "30 dias",
+    "deliveryDays": 4,
+    "warranty": "12 meses",
+    "items": [],
+    "observations": [
+      "Proposta válida por 15 dias."
+    ],
+    "missingFields": [],
+    "evidence": {
+      "supplierName": {
+        "page": 1,
+        "text": "Fornecedor A"
+      },
+      "displayedTotal": {
+        "page": 1,
+        "text": "Total: R$ 4.500,00"
+      },
+      "shipping": {
+        "page": 1,
+        "text": "Frete adicional: R$ 200,00"
+      },
+      "paymentTerms": {
+        "page": 1,
+        "text": "Pagamento: 30 dias"
+      },
+      "deliveryDays": {
+        "page": 1,
+        "text": "Entrega: 4 dias"
+      },
+      "warranty": {
+        "page": 1,
+        "text": "Garantia: 12 meses"
+      }
+    }
+  },
+  "critical-value-without-evidence": {
+    "schemaVersion": 1,
+    "supplierName": "Fornecedor A",
+    "displayedTotal": 4500,
+    "currency": "BRL",
+    "shipping": {
+      "status": "additional",
+      "amount": 200
+    },
+    "paymentTerms": "30 dias",
+    "deliveryDays": 4,
+    "warranty": "12 meses",
+    "items": [],
+    "observations": [
+      "Proposta válida por 15 dias."
+    ],
+    "missingFields": [],
+    "evidence": {
+      "supplierName": {
+        "page": 1,
+        "text": "Fornecedor A"
+      },
+      "displayedTotal": null,
+      "shipping": {
+        "page": 1,
+        "text": "Frete adicional: R$ 200,00"
+      },
+      "paymentTerms": {
+        "page": 1,
+        "text": "Pagamento: 30 dias"
+      },
+      "deliveryDays": {
+        "page": 1,
+        "text": "Entrega: 4 dias"
+      },
+      "warranty": {
+        "page": 1,
+        "text": "Garantia: 12 meses"
+      }
+    }
+  }
+}

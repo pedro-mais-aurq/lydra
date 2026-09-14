@@ -1,0 +1,84 @@
+{
+  "baseline": "lydra-parte-a2-final.zip",
+  "results": [
+    {
+      "gate": "install",
+      "command": "npm ci",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "install.log"
+    },
+    {
+      "gate": "audit",
+      "command": "npm run audit:dependencies",
+      "exitCode": 0,
+      "status": "PASS",
+      "vulnerabilities": 0,
+      "evidence": "audit.log"
+    },
+    {
+      "gate": "lint",
+      "command": "npm run lint",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "lint.log"
+    },
+    {
+      "gate": "typecheck",
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "typecheck.log"
+    },
+    {
+      "gate": "unit",
+      "command": "npm run test:unit -- --reporter=default --reporter=json --outputFile=docs/validation-b/unit-results.json",
+      "exitCode": 0,
+      "status": "PASS",
+      "total": 234,
+      "passed": 234,
+      "failed": 0,
+      "skipped": 0,
+      "files": 15,
+      "bTests": 144,
+      "bFiles": 4,
+      "evidence": [
+        "unit.log",
+        "unit-results.json"
+      ]
+    },
+    {
+      "gate": "build",
+      "command": "npm run build",
+      "exitCode": 0,
+      "status": "PASS",
+      "evidence": "build.log"
+    },
+    {
+      "gate": "smoke",
+      "command": "npm run test:smoke",
+      "exitCode": 0,
+      "status": "PASS",
+      "scope": "Public HTTP only; not authenticated Supabase integration",
+      "evidence": "smoke.log"
+    },
+    {
+      "gate": "security",
+      "command": "npm run test:security",
+      "status": "NOT_RUN",
+      "reason": "No Docker/Podman or reachable local Supabase/PostgreSQL",
+      "evidence": "environment.json"
+    },
+    {
+      "gate": "live-provider",
+      "status": "NOT_RUN",
+      "reason": "Complete AI provider credentials/configuration unavailable",
+      "evidence": "environment.json"
+    },
+    {
+      "gate": "ci",
+      "status": "NOT_RUN",
+      "reason": "No identified remote repository or Actions run for the supplied archive"
+    }
+  ]
+}

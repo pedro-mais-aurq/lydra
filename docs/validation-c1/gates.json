@@ -1,0 +1,64 @@
+{
+  "npm ci": {
+    "status": "PASS",
+    "exit_code": 0,
+    "log": "install.log"
+  },
+  "npm run lint": {
+    "status": "PASS",
+    "exit_code": 0,
+    "log": "lint.log"
+  },
+  "npm run typecheck": {
+    "status": "PASS",
+    "exit_code": 0,
+    "log": "typecheck.log"
+  },
+  "npm run test:unit": {
+    "status": "PASS",
+    "exit_code": 0,
+    "files": 23,
+    "suites": 49,
+    "tests": 375,
+    "passed": 375,
+    "failed": 0,
+    "log": "unit.log"
+  },
+  "npm run build": {
+    "status": "PASS",
+    "exit_code": 0,
+    "log": "build.log"
+  },
+  "npm run test:smoke": {
+    "status": "PASS",
+    "exit_code": 0,
+    "log": "smoke.log"
+  },
+  "node scripts/smoke-comparison.mjs": {
+    "status": "PASS",
+    "exit_code": 0,
+    "checks": 3,
+    "log": "smoke-comparison.log"
+  },
+  "npm audit --json": {
+    "status": "PASS",
+    "vulnerabilities": 0,
+    "log": "audit.json"
+  },
+  "npm run test:integration": {
+    "status": "NOT EXECUTED",
+    "reason": "Supabase local unavailable; Docker and Podman absent."
+  },
+  "npm run test:security": {
+    "status": "NOT EXECUTED",
+    "reason": "Supabase local unavailable; Docker and Podman absent."
+  },
+  "npm run test:smoke:security": {
+    "status": "NOT EXECUTED",
+    "reason": "Supabase local unavailable; Docker and Podman absent."
+  },
+  "CI": {
+    "status": "NOT EXECUTED",
+    "reason": "Remote workflow not triggered; original CI preserved."
+  }
+}

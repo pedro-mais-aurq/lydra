@@ -1,0 +1,38 @@
+name: Foundation security gates
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  foundation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install pinned dependency graph
+        run: npm ci
+      - name: Dependency audit (moderate, high and critical fail)
+        run: npm run audit:dependencies
+      - name: Lint
+        run: npm run lint
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Unit and Route Handler tests
+        run: npm run test:unit
+      - name: Start disposable Supabase (Auth, Postgres, PostgREST and Storage)
+        run: npx --no-install supabase start -x studio,postgres-meta,logflare,vector,realtime,edge-runtime,mailpit,imgproxy,supavisor
+      - name: Clean database reset, SQL assertions and real security integration tests
+        run: npm run test:security
+      - name: Build
+        run: npm run build
+      - name: Production HTTP smoke
+        run: npm run test:smoke
+      - name: Production HTTP with real anonymous sessions
+        run: npm run test:smoke:security

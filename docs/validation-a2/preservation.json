@@ -1,0 +1,54 @@
+{
+  "supabase/migrations/0002_updated_at_trigger.sql": {
+    "sameBytes": true,
+    "sha256": "28e0fbdd1752c9af307a2170c2aa42b19eac58ca28ce622d6dc7692d359b9d83"
+  },
+  "supabase/migrations/0007_storage.sql": {
+    "sameBytes": true,
+    "sha256": "aca0283b0373abb02910a8531255734c633d09c43c8eb5ade1adebc55467daeb"
+  },
+  "supabase/migrations/0003_comparisons.sql": {
+    "sameBytes": true,
+    "sha256": "f405d0e0eecd3e66855d20c7133e3dfc4f916c5a8cb2916eda7015d85eb843b3"
+  },
+  "supabase/migrations/0004_quote_documents.sql": {
+    "sameBytes": true,
+    "sha256": "b0a5c65f5a7fca53fc8f5333569ff68b2a28036b882032af1a049fc8425c2e73"
+  },
+  "supabase/migrations/0005_comparison_feedback.sql": {
+    "sameBytes": true,
+    "sha256": "38923f73a44c2721fa60ee978253f5ac3f0610ba60fb74ae30cc4fd200f8cb4a"
+  },
+  "supabase/migrations/20260912182928_a1_backend_authority.sql": {
+    "sameBytes": true,
+    "sha256": "8327e9d76e30d99a2ddef968e34078bad1e801fdfb320ddd611ad212044d1d07"
+  },
+  "supabase/migrations/0001_extensions.sql": {
+    "sameBytes": true,
+    "sha256": "77cad0654c8abfa607c14f19fceb4a7424ae63d89790d76596f296efc2557a8b"
+  },
+  "supabase/migrations/0008_document_count_guard.sql": {
+    "sameBytes": true,
+    "sha256": "a23b1cde0856a082dc50a9ae3b5b96d5688689bbcf9836f63e7b258cc616d9fd"
+  },
+  "supabase/migrations/0006_rls_policies.sql": {
+    "sameBytes": true,
+    "sha256": "04316be9ba4232f8f004b8fcecc4f39d527cee7836290e69e6097d7097a3b0e3"
+  },
+  "supabase/migrations/20260912182931_a1_document_integrity.sql": {
+    "sameBytes": true,
+    "sha256": "09b900c5e8f40b5a4ef5d9939bb5e8ee296acc24882225f9aa0155bbb13867fa"
+  },
+  "src/app/page.tsx": {
+    "sameBytes": true,
+    "sha256": "3ce9af6c7f63b3be3b65000d1b2d59a24e3c507cbec3ec72be386053f43c8c98"
+  },
+  "src/app/layout.tsx": {
+    "sameBytes": true,
+    "sha256": "7e9c5027534fcde956dfaa6ed6cc60f9ec28289d2d9e8f68c1b8a78d9f90ddc1"
+  },
+  "next.config.mjs": {
+    "sameBytes": true,
+    "sha256": "73f18ea67787ab9d40bedbf6600bc6f822dfc31347374a54677d67a36567b20b"
+  }
+}

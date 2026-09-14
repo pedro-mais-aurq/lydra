@@ -1,0 +1,3 @@
+PASS landing desktop and mobile preserve D
+PASS anonymous session, create, 3 multipart uploads, process, result, refresh
+PASS title and 1/2/4/5-file UI validation; oversized/unsupported rejection

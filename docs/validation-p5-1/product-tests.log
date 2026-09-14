@@ -1,0 +1,36 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> lydra-mvp-foundation@0.1.0 test:unit
+> vitest run tests/unit
+
+
+ RUN  v4.1.11 /workspace/scratch/2e2068085cef/lydra
+
+ ❯ tests/unit/product/result.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/product/result.test.ts [ tests/unit/product/result.test.ts ]
+Error: Failed to parse source for import analysis because the content contains invalid JS syntax. If you use tsconfig.json, make sure to not set jsx to preserve.
+  Plugin: vite:import-analysis
+  File: /workspace/scratch/2e2068085cef/lydra/src/components/comparison-ui/ComparisonResultView.tsx:24:163
+  41 |  }
+  42 |  function Evidence({ value }) {
+  43 |  ... informada" : `Página ${value.page}`}</footer></blockquote>;
+     |                                                                 ^
+  44 |  }
+  45 |  export function ComparisonResultView({ detail }) {
+ ❯ TransformPluginContext._formatLog node_modules/vite/dist/node/chunks/node.js:8393:39
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/node.js:8390:14
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:26022:10
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8172:14
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:19634:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 26 passed (27)
+      Tests  394 passed (394)
+   Start at  23:26:58
+   Duration  1.39s (transform 1.70s, setup 389ms, import 3.12s, tests 897ms, environment 3ms)
+

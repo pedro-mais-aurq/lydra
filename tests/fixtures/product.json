@@ -1,0 +1,235 @@
+{
+  "id": "22222222-2222-4222-8222-222222222222",
+  "title": "Fixture",
+  "status": "completed",
+  "result": {
+    "suppliers": [
+      {
+        "documentId": "10000000-0000-4000-8000-000000000001",
+        "supplierName": "Fornecedor A",
+        "costAssessment": {
+          "displayedTotal": 4500,
+          "knownComparableTotal": 4700,
+          "completeness": "complete",
+          "reasons": []
+        },
+        "deliveryDays": 4,
+        "currency": "BRL",
+        "missingFields": []
+      },
+      {
+        "documentId": "10000000-0000-4000-8000-000000000002",
+        "supplierName": "Fornecedor A",
+        "costAssessment": {
+          "displayedTotal": 4570,
+          "knownComparableTotal": 4570,
+          "completeness": "complete",
+          "reasons": []
+        },
+        "deliveryDays": 7,
+        "currency": "BRL",
+        "missingFields": []
+      },
+      {
+        "documentId": "10000000-0000-4000-8000-000000000003",
+        "supplierName": "Fornecedor A",
+        "costAssessment": {
+          "displayedTotal": 4300,
+          "knownComparableTotal": 4300,
+          "completeness": "partial",
+          "reasons": [
+            "O frete não foi informado; o custo conhecido não garante o custo final."
+          ]
+        },
+        "deliveryDays": null,
+        "currency": "BRL",
+        "missingFields": [
+          "deliveryDays",
+          "shipping"
+        ]
+      }
+    ],
+    "normalizedItems": [],
+    "highlights": {
+      "lowestCompleteKnownCostDocumentId": "10000000-0000-4000-8000-000000000002",
+      "lowestKnownCostDocumentId": "10000000-0000-4000-8000-000000000003",
+      "fastestKnownDeliveryDocumentId": "10000000-0000-4000-8000-000000000001",
+      "warnings": [
+        "Documento 10000000-0000-4000-8000-000000000003: O frete não foi informado; o custo conhecido não garante o custo final.",
+        "Documento 10000000-0000-4000-8000-000000000003: O prazo não foi informado; não significa entrega imediata.",
+        "O menor custo conhecido é parcial e não garante o menor custo final."
+      ]
+    },
+    "summary": "Menor custo completo conhecido: documento 10000000-0000-4000-8000-000000000002, 4570 BRL. Menor custo conhecido parcial: documento 10000000-0000-4000-8000-000000000003, 4300 BRL. Menor prazo conhecido: documento 10000000-0000-4000-8000-000000000001, 4 dias. Incertezas e ressalvas: Documento 10000000-0000-4000-8000-000000000003: O frete não foi informado; o custo conhecido não garante o custo final. Documento 10000000-0000-4000-8000-000000000003: O prazo não foi informado; não significa entrega imediata. O menor custo conhecido é parcial e não garante o menor custo final."
+  },
+  "errorCode": null,
+  "createdAt": "2026-09-13T00:00:00.000001+00:00",
+  "updatedAt": "2026-09-13T00:00:00.000002+00:00",
+  "documents": [
+    {
+      "id": "10000000-0000-4000-8000-000000000001",
+      "comparisonId": "22222222-2222-4222-8222-222222222222",
+      "fileName": "quote.pdf",
+      "mimeType": "application/pdf",
+      "sizeBytes": 1802,
+      "status": "completed",
+      "extractedData": {
+        "schemaVersion": 1,
+        "supplierName": "Fornecedor A",
+        "displayedTotal": 4500,
+        "currency": "BRL",
+        "shipping": {
+          "status": "additional",
+          "amount": 200
+        },
+        "paymentTerms": "30 dias",
+        "deliveryDays": 4,
+        "warranty": "12 meses",
+        "items": [],
+        "observations": [
+          "Proposta válida por 15 dias."
+        ],
+        "missingFields": [],
+        "evidence": {
+          "supplierName": {
+            "page": 1,
+            "text": "Fornecedor A"
+          },
+          "displayedTotal": {
+            "page": 1,
+            "text": "Total: R$ 4.500,00"
+          },
+          "shipping": {
+            "page": 1,
+            "text": "Frete adicional: R$ 200,00"
+          },
+          "paymentTerms": {
+            "page": 1,
+            "text": "Pagamento: 30 dias"
+          },
+          "deliveryDays": {
+            "page": 1,
+            "text": "Entrega: 4 dias"
+          },
+          "warranty": {
+            "page": 1,
+            "text": "Garantia: 12 meses"
+          }
+        }
+      },
+      "extractionSchemaVersion": 1,
+      "errorCode": null,
+      "createdAt": "2026-09-13T00:00:00.000003+00:00",
+      "updatedAt": "2026-09-13T00:00:00.000004+00:00"
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000002",
+      "comparisonId": "22222222-2222-4222-8222-222222222222",
+      "fileName": "quote.pdf",
+      "mimeType": "application/pdf",
+      "sizeBytes": 1802,
+      "status": "completed",
+      "extractedData": {
+        "schemaVersion": 1,
+        "supplierName": "Fornecedor A",
+        "displayedTotal": 4570,
+        "currency": "BRL",
+        "shipping": {
+          "status": "included",
+          "amount": null
+        },
+        "paymentTerms": "30 dias",
+        "deliveryDays": 7,
+        "warranty": "12 meses",
+        "items": [],
+        "observations": [
+          "Proposta válida por 15 dias."
+        ],
+        "missingFields": [],
+        "evidence": {
+          "supplierName": {
+            "page": 1,
+            "text": "Fornecedor A"
+          },
+          "displayedTotal": {
+            "page": 1,
+            "text": "Total: R$ 4.570,00"
+          },
+          "shipping": {
+            "page": 1,
+            "text": "Frete incluso."
+          },
+          "paymentTerms": {
+            "page": 1,
+            "text": "Pagamento: 30 dias"
+          },
+          "deliveryDays": {
+            "page": 1,
+            "text": "Entrega: 7 dias"
+          },
+          "warranty": {
+            "page": 1,
+            "text": "Garantia: 12 meses"
+          }
+        }
+      },
+      "extractionSchemaVersion": 1,
+      "errorCode": null,
+      "createdAt": "2026-09-13T00:00:00.000005+00:00",
+      "updatedAt": "2026-09-13T00:00:00.000006+00:00"
+    },
+    {
+      "id": "10000000-0000-4000-8000-000000000003",
+      "comparisonId": "22222222-2222-4222-8222-222222222222",
+      "fileName": "quote.pdf",
+      "mimeType": "application/pdf",
+      "sizeBytes": 1802,
+      "status": "completed",
+      "extractedData": {
+        "schemaVersion": 1,
+        "supplierName": "Fornecedor A",
+        "displayedTotal": 4300,
+        "currency": "BRL",
+        "shipping": {
+          "status": "not_informed",
+          "amount": null
+        },
+        "paymentTerms": "30 dias",
+        "deliveryDays": null,
+        "warranty": "12 meses",
+        "items": [],
+        "observations": [
+          "Proposta válida por 15 dias."
+        ],
+        "missingFields": [
+          "deliveryDays",
+          "shipping"
+        ],
+        "evidence": {
+          "supplierName": {
+            "page": 1,
+            "text": "Fornecedor A"
+          },
+          "displayedTotal": {
+            "page": 1,
+            "text": "Total: R$ 4.300,00"
+          },
+          "shipping": null,
+          "paymentTerms": {
+            "page": 1,
+            "text": "Pagamento: 30 dias"
+          },
+          "deliveryDays": null,
+          "warranty": {
+            "page": 1,
+            "text": "Garantia: 12 meses"
+          }
+        }
+      },
+      "extractionSchemaVersion": 1,
+      "errorCode": null,
+      "createdAt": "2026-09-13T00:00:00.000007+00:00",
+      "updatedAt": "2026-09-13T00:00:00.000008+00:00"
+    }
+  ]
+}
