@@ -38,7 +38,7 @@ export class ExtractionService {
       stage = "provider";
       validateDocumentInput(document);
       const provider = typeof this.provider === "function" ? this.provider() : this.provider;
-      const response: unknown = await provider.extract(document);
+      const response: unknown = await provider.extract(document, { requestId: context.requestId, comparisonId: scope.comparisonId, documentId: scope.documentId });
 
       log("extraction.provider_completed");
 

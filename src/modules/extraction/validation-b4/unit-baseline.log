@@ -1,0 +1,241 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> lydra-mvp-foundation@0.1.0 test:unit
+> vitest run tests/unit
+
+
+ RUN  v4.1.11 /workspace/scratch/9797764cb4a7/b4-work
+
+stderr | tests/unit/extraction/semantics.test.ts > B01-B14 — strict schema, evidence and absence > B12 rejects using item amounts or an unrelated number as a displayed total
+[lydra:extraction-validation] {
+  reason: 'value_number_not_supported',
+  errorCode: 'EXTRACTION_INVALID'
+}
+[lydra:extraction-validation] {
+  reason: 'value_number_not_supported',
+  errorCode: 'EXTRACTION_INVALID'
+}
+
+stderr | tests/unit/extraction/semantics.test.ts > B01-B14 — strict schema, evidence and absence > rejects unsupported text, ranges, and a numeric deadline from another field
+[lydra:extraction-validation] { reason: 'value_text_not_supported', errorCode: 'EXTRACTION_INVALID' }
+
+ ❯ tests/unit/extraction/semantics.test.ts (72 tests | 4 failed) 233ms
+     × B12 rejects using item amounts or an unrelated number as a displayed total 13ms
+     × rejects unsupported text, ranges, and a numeric deadline from another field 2ms
+     × does not accept not_applicable without explicit grounds 1ms
+     × does not accept excluded shipping as included 2ms
+stderr | tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > separates hostile PDF bytes from trusted instructions (injection-override)
+[lydra:extraction-validation] {
+  reason: 'interpretation_schema_invalid',
+  errorCode: 'EXTRACTION_INVALID'
+}
+
+stderr | tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > separates hostile PDF bytes from trusted instructions (injection-exfiltration)
+[lydra:extraction-validation] {
+  reason: 'interpretation_schema_invalid',
+  errorCode: 'EXTRACTION_INVALID'
+}
+
+stdout | tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > transports allowed image MIME image/png as base64 input_image
+{"ts":"2026-09-14T13:40:56.734Z","stage":"extraction.interpreter_processing","provider":"openai","model":"model-from-test-environment"}
+
+stderr | tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > transports allowed image MIME image/png as base64 input_image
+[lydra:extraction-validation] {
+  reason: 'interpretation_schema_invalid',
+  errorCode: 'EXTRACTION_INVALID'
+}
+
+stdout | tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > transports allowed image MIME image/png as base64 input_image
+{"ts":"2026-09-14T13:40:56.750Z","stage":"extraction.pipeline_failed","provider":"openai","durationMs":16,"errorCode":"EXTRACTION_INVALID"}
+
+stdout | tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > transports allowed image MIME image/jpeg as base64 input_image
+{"ts":"2026-09-14T13:40:56.765Z","stage":"extraction.interpreter_processing","provider":"openai","model":"model-from-test-environment"}
+
+stderr | tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > transports allowed image MIME image/jpeg as base64 input_image
+[lydra:extraction-validation] {
+  reason: 'interpretation_schema_invalid',
+  errorCode: 'EXTRACTION_INVALID'
+}
+
+stdout | tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > transports allowed image MIME image/jpeg as base64 input_image
+{"ts":"2026-09-14T13:40:56.771Z","stage":"extraction.pipeline_failed","provider":"openai","durationMs":6,"errorCode":"EXTRACTION_INVALID"}
+
+stdout | tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > transports allowed image MIME image/webp as base64 input_image
+{"ts":"2026-09-14T13:40:56.777Z","stage":"extraction.interpreter_processing","provider":"openai","model":"model-from-test-environment"}
+
+stderr | tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > transports allowed image MIME image/webp as base64 input_image
+[lydra:extraction-validation] {
+  reason: 'interpretation_schema_invalid',
+  errorCode: 'EXTRACTION_INVALID'
+}
+
+stdout | tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > transports allowed image MIME image/webp as base64 input_image
+{"ts":"2026-09-14T13:40:56.781Z","stage":"extraction.pipeline_failed","provider":"openai","durationMs":4,"errorCode":"EXTRACTION_INVALID"}
+
+stdout | tests/unit/extraction/provider.test.ts > B09, B15-B17, B23 — provider errors and hostile responses > ignores protocol reasoning metadata but still validates the sole quote
+{"ts":"2026-09-14T13:40:56.904Z","stage":"extraction.interpreter_processing","provider":"openai","model":"model-from-test-environment"}
+
+stderr | tests/unit/extraction/provider.test.ts > B09, B15-B17, B23 — provider errors and hostile responses > ignores protocol reasoning metadata but still validates the sole quote
+[lydra:extraction-validation] {
+  reason: 'interpretation_schema_invalid',
+  errorCode: 'EXTRACTION_INVALID'
+}
+
+stdout | tests/unit/extraction/provider.test.ts > B09, B15-B17, B23 — provider errors and hostile responses > ignores protocol reasoning metadata but still validates the sole quote
+{"ts":"2026-09-14T13:40:56.905Z","stage":"extraction.pipeline_failed","provider":"openai","durationMs":1,"errorCode":"EXTRACTION_INVALID"}
+
+ ❯ tests/unit/extraction/provider.test.ts (49 tests | 8 failed) 805ms
+     × uses only explicitly configured model and server-side key 96ms
+     × derives strict required properties from the canonical schema at every object 27ms
+     × separates hostile PDF bytes from trusted instructions (injection-override) 296ms
+     × separates hostile PDF bytes from trusted instructions (injection-exfiltration) 28ms
+     × transports allowed image MIME image/png as base64 input_image 29ms
+     × transports allowed image MIME image/jpeg as base64 input_image 19ms
+     × transports allowed image MIME image/webp as base64 input_image 10ms
+     × ignores protocol reasoning metadata but still validates the sole quote 2ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 12 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/extraction/provider.test.ts > configuration and strict wire schema > uses only explicitly configured model and server-side key
+AssertionError: expected { model: 'configured-model', …(6) } to match object { model: 'configured-model', …(2) }
+(7 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "apiKey": "secret",
+    "model": "configured-model",
+-   "timeoutMs": 60000,
++   "timeoutMs": 180000,
+  }
+
+ ❯ tests/unit/extraction/provider.test.ts:29:39
+     27|   it("uses only explicitly configured model and server-side key", () =…
+     28|     const env = { AI_PROVIDER: "openai", AI_MODEL: "configured-model",…
+     29|     expect(readExtractionConfig(env)).toMatchObject({ model: "configur…
+       |                                       ^
+     30|     expect(() => readExtractionConfig({ ...env, AI_API_KEY: undefined …
+     31|     for (const value of ["", "0", "NaN", "300001"]) expect(() => readE…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/12]⎯
+
+ FAIL  tests/unit/extraction/provider.test.ts > configuration and strict wire schema > derives strict required properties from the canonical schema at every object
+AssertionError: expected [ 'schemaVersion', …(8) ] to deeply equal [ 'schemaVersion', …(11) ]
+
+- Expected
++ Received
+
+  [
+    "schemaVersion",
+    "supplierName",
+-   "displayedTotal",
+-   "currency",
+-   "shipping",
+    "paymentTerms",
+    "deliveryDays",
+    "warranty",
++   "shipping",
+    "items",
+    "observations",
+-   "missingFields",
+-   "evidence",
++   "monetaryEvidence",
+  ]
+
+ ❯ tests/unit/extraction/provider.test.ts:36:29
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/12]⎯
+
+ FAIL  tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > separates hostile PDF bytes from trusted instructions (injection-override)
+ FAIL  tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > separates hostile PDF bytes from trusted instructions (injection-exfiltration)
+AppError: A extração não atende ao contrato de dados e evidências.
+ ❯ invalidExtraction src/modules/extraction/domain/errors.ts:4:40
+
+ ❯ sanitizeProviderError src/modules/extraction/domain/errors.ts:15:53
+ ❯ ExtractionService.extract src/modules/extraction/application/extraction.service.ts:52:43
+ ❯ tests/unit/extraction/provider.test.ts:59:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/12]⎯
+
+ FAIL  tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > transports allowed image MIME image/png as base64 input_image
+ FAIL  tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > transports allowed image MIME image/jpeg as base64 input_image
+ FAIL  tests/unit/extraction/provider.test.ts > multimodal transport and B11 adversarial documents > transports allowed image MIME image/webp as base64 input_image
+AppError: A extração não atende ao contrato de dados e evidências.
+ ❯ invalidExtraction src/modules/extraction/domain/errors.ts:4:40
+
+ ❯ sanitizeProviderError src/modules/extraction/domain/errors.ts:15:53
+ ❯ runMonetaryPipeline src/modules/extraction/application/monetary-pipeline.ts:36:18
+ ❯ tests/unit/extraction/provider.test.ts:93:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/12]⎯
+
+ FAIL  tests/unit/extraction/provider.test.ts > B09, B15-B17, B23 — provider errors and hostile responses > ignores protocol reasoning metadata but still validates the sole quote
+AppError: A extração não atende ao contrato de dados e evidências.
+ ❯ invalidExtraction src/modules/extraction/domain/errors.ts:4:40
+
+ ❯ sanitizeProviderError src/modules/extraction/domain/errors.ts:15:53
+ ❯ runMonetaryPipeline src/modules/extraction/application/monetary-pipeline.ts:36:18
+ ❯ tests/unit/extraction/provider.test.ts:156:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/12]⎯
+
+ FAIL  tests/unit/extraction/semantics.test.ts > B01-B14 — strict schema, evidence and absence > B12 rejects using item amounts or an unrelated number as a displayed total
+AssertionError: expected function to throw an error, but it didn't
+ ❯ rejects tests/unit/extraction/semantics.test.ts:7:43
+      5|
+      6| function rejects(value: unknown) {
+      7|   expect(() => validateExtraction(value)).toThrow(expect.objectContain…
+       |                                           ^
+      8| }
+      9|
+ ❯ tests/unit/extraction/semantics.test.ts:80:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/12]⎯
+
+ FAIL  tests/unit/extraction/semantics.test.ts > B01-B14 — strict schema, evidence and absence > rejects unsupported text, ranges, and a numeric deadline from another field
+AssertionError: expected function to throw an error, but it didn't
+ ❯ rejects tests/unit/extraction/semantics.test.ts:7:43
+      5|
+      6| function rejects(value: unknown) {
+      7|   expect(() => validateExtraction(value)).toThrow(expect.objectContain…
+       |                                           ^
+      8| }
+      9|
+ ❯ tests/unit/extraction/semantics.test.ts:119:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/12]⎯
+
+ FAIL  tests/unit/extraction/semantics.test.ts > shipping semantics > does not accept not_applicable without explicit grounds
+AssertionError: expected function to throw an error, but it didn't
+ ❯ rejects tests/unit/extraction/semantics.test.ts:7:43
+      5|
+      6| function rejects(value: unknown) {
+      7|   expect(() => validateExtraction(value)).toThrow(expect.objectContain…
+       |                                           ^
+      8| }
+      9|
+ ❯ tests/unit/extraction/semantics.test.ts:153:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/12]⎯
+
+ FAIL  tests/unit/extraction/semantics.test.ts > shipping semantics > does not accept excluded shipping as included
+AssertionError: expected function to throw an error, but it didn't
+ ❯ rejects tests/unit/extraction/semantics.test.ts:7:43
+      5|
+      6| function rejects(value: unknown) {
+      7|   expect(() => validateExtraction(value)).toThrow(expect.objectContain…
+       |                                           ^
+      8| }
+      9|
+ ❯ tests/unit/extraction/semantics.test.ts:159:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/12]⎯
+
+
+ Test Files  2 failed | 26 passed (28)
+      Tests  12 failed | 388 passed (400)
+   Start at  09:40:51
+   Duration  11.80s (transform 20.50s, setup 3.37s, import 39.66s, tests 6.50s, environment 12ms)
+

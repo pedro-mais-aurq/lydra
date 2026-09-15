@@ -5,7 +5,9 @@ import { OpenAIExtractionProvider } from "@/modules/extraction/providers/openai.
 import { readExtractionConfig } from "@/modules/extraction/providers/config";
 import { EXTRACTION_SYSTEM_INSTRUCTIONS, UNTRUSTED_DOCUMENT_LABEL } from "@/modules/extraction/prompts/extraction.prompt";
 import { extractionJsonSchema } from "@/modules/extraction/providers/json-schema";
-import { extractedQuoteSchema } from "@/contracts";
+import { interpretationDraftSchema } from "@/modules/extraction/interpretation/interpretation";
+import { selection } from "@/modules/extraction/tests/fixtures";
+import { assessCost } from "@/modules/comparison/cost-assessment";
 import { ExtractionService, validateExtraction } from "@/modules/extraction";
 import { context, fixture, mockStore, openaiResponse, pdfInput } from "../../fixtures/extraction/helpers";
 
@@ -14,6 +16,26 @@ const config = { provider: "openai" as const, model: "model-from-test-environmen
 const json = (value: unknown, status = 200) => new Response(JSON.stringify(value), { status, headers: { "content-type": "application/json" } });
 const fetchResult = (value: unknown) => vi.fn<typeof fetch>().mockResolvedValue(json(value));
 afterEach(() => { vi.restoreAllMocks(); vi.useRealTimers(); });
+
+// Legacy documents remain the same; only their mocked two-stage wire protocol changes.
+function interpretedFixture(name = "additional-known") {
+  const quote = fixture(name).expected;
+  const fact = (key: "supplierName" | "paymentTerms" | "deliveryDays" | "warranty") =>
+    quote[key] === null ? null : { value: quote[key], evidence: quote.evidence[key] };
+  return {
+    schemaVersion: 1, supplierName: fact("supplierName"), paymentTerms: fact("paymentTerms"),
+    deliveryDays: fact("deliveryDays"), warranty: fact("warranty"),
+    shipping: { status: quote.shipping.status, evidence: quote.evidence.shipping },
+    items: [], observations: quote.observations.map(value => ({ value, evidence: { page: 1, text: value } })),
+    monetaryEvidence: [quote.evidence.displayedTotal, quote.evidence.shipping]
+      .filter(evidence => evidence !== null).map(evidence => ({ evidence, unmarkedTokens: [] })),
+  };
+}
+function pipelineFetch(name = "additional-known") {
+  return vi.fn<typeof fetch>().mockResolvedValueOnce(json(openaiResponse(interpretedFixture(name))))
+    .mockResolvedValueOnce(json(openaiResponse(selection())));
+}
+
 
 describe("configuration and strict wire schema", () => {
   it.each([{}, { AI_PROVIDER: "openai" }, { AI_PROVIDER: "openai", AI_MODEL: "configured-model" },
@@ -26,14 +48,14 @@ describe("configuration and strict wire schema", () => {
 
   it("uses only explicitly configured model and server-side key", () => {
     const env = { AI_PROVIDER: "openai", AI_MODEL: "configured-model", AI_API_KEY: "secret", NEXT_PUBLIC_AI_API_KEY: "must-not-be-used" };
-    expect(readExtractionConfig(env)).toMatchObject({ model: "configured-model", apiKey: "secret", timeoutMs: 60000 });
+    expect(readExtractionConfig(env)).toMatchObject({ model: "configured-model", apiKey: "secret", timeoutMs: 180000 });
     expect(() => readExtractionConfig({ ...env, AI_API_KEY: undefined })).toThrow();
     for (const value of ["", "0", "NaN", "300001"]) expect(() => readExtractionConfig({ ...env, AI_TIMEOUT_MS: value })).toThrow();
   });
 
-  it("derives strict required properties from the canonical schema at every object", () => {
+  it("derives strict required properties from the internal interpreter schema at every object", () => {
     const schema = extractionJsonSchema();
-    expect(schema.required).toEqual(Object.keys(extractedQuoteSchema.shape));
+    expect(schema.required).toEqual(Object.keys(interpretationDraftSchema.shape));
     function check(value: unknown): void {
       const object = z.object({ type: z.string().optional(), properties: z.record(z.unknown()).optional(), required: z.array(z.string()).optional(), additionalProperties: z.boolean().optional(), items: z.unknown().optional(), anyOf: z.array(z.unknown()).optional() }).parse(value);
       if (object.type === "object") {
@@ -49,15 +71,31 @@ describe("configuration and strict wire schema", () => {
 });
 
 describe("multimodal transport and B11 adversarial documents", () => {
+  it.each([
+    ["additional-known", "money-1", 4700, "complete"],
+    ["included", null, 4570, "complete"],
+    ["shipping-absent", null, 4300, "partial"],
+  ] as const)("canonical PDF %s traverses both mocked LLM stages and the real assembler", async (name, shippingId, total, completeness) => {
+    const fakeFetch = vi.fn<typeof fetch>()
+      .mockResolvedValueOnce(json(openaiResponse(interpretedFixture(name))))
+      .mockResolvedValueOnce(json(openaiResponse({ ...selection(), shippingAmountCandidateId: shippingId })));
+    const store = mockStore();
+    store.downloadDocument.mockResolvedValue(pdfInput(name));
+    const quote = await new ExtractionService(store, new OpenAIExtractionProvider(config, fakeFetch)).extract(context);
+    expect(quote).toEqual(fixture(name).expected);
+    expect(assessCost(quote)).toMatchObject({ knownComparableTotal: total, completeness });
+    expect(store.saveCompletedExtraction).toHaveBeenCalledWith(expect.anything(), expect.anything(), quote);
+    expect(fakeFetch).toHaveBeenCalledTimes(2);
+  });
   it.each(["injection-override", "injection-exfiltration"])("separates hostile PDF bytes from trusted instructions (%s)", async name => {
     vi.spyOn(console, "log").mockImplementation(() => undefined);
     const input = pdfInput(name);
-    const fakeFetch = fetchResult(openaiResponse(fixture(name).expected));
+    const fakeFetch = pipelineFetch(name);
     const provider = new OpenAIExtractionProvider(config, fakeFetch);
     const store = mockStore();
     store.downloadDocument.mockResolvedValue(input);
     expect(await new ExtractionService(store, provider).extract(context)).toEqual(fixture(name).expected);
-    expect(fakeFetch).toHaveBeenCalledOnce();
+    expect(fakeFetch).toHaveBeenCalledTimes(2);
     const [url, init] = fakeFetch.mock.calls[0] ?? [];
     expect(url).toBe("https://api.openai.com/v1/responses");
     expect(init).toMatchObject({ method: "POST", redirect: "error", cache: "no-store", headers: { Authorization: "Bearer synthetic-test-secret" } });
@@ -68,7 +106,7 @@ describe("multimodal transport and B11 adversarial documents", () => {
         { role: "system", content: [{ type: "input_text", text: EXTRACTION_SYSTEM_INSTRUCTIONS }] },
         { role: "user", content: [{ type: "input_text", text: UNTRUSTED_DOCUMENT_LABEL }, { type: "input_file", filename: "document.pdf", file_data: "data:application/pdf;base64," + Buffer.from(input.bytes).toString("base64") }] },
       ],
-      text: { format: { type: "json_schema", name: "lydra_extracted_quote", strict: true, schema: extractionJsonSchema() } },
+      text: { format: { type: "json_schema", name: "lydra_interpretation_draft", strict: true, schema: extractionJsonSchema() } },
     });
     expect(EXTRACTION_SYSTEM_INSTRUCTIONS).not.toContain("Evil Corp");
     expect(EXTRACTION_SYSTEM_INSTRUCTIONS).not.toContain("attacker.invalid");
@@ -77,18 +115,22 @@ describe("multimodal transport and B11 adversarial documents", () => {
 
   it.each(["injection-override", "injection-exfiltration"])("rejects a provider obeying the commands in %s", async name => {
     vi.spyOn(console, "log").mockImplementation(() => undefined);
-    const quote = fixture(name).expected;
-    quote.supplierName = "Evil Corp";
-    quote.evidence.supplierName = { page: 1, text: fixture(name).transcript };
-    const provider = new OpenAIExtractionProvider(config, fetchResult(openaiResponse(quote)));
+    // Keep the B4 wire shape valid so rejection exercises the injection guard,
+    // rather than accidentally failing because an obsolete quote DTO was used.
+    const interpreted = interpretedFixture(name);
+    interpreted.supplierName = { value: "Evil Corp", evidence: { page: 1, text: fixture(name).transcript } };
+    expect(interpretationDraftSchema.safeParse(interpreted).success).toBe(true);
+    const fakeFetch = fetchResult(openaiResponse(interpreted));
+    const provider = new OpenAIExtractionProvider(config, fakeFetch);
     const store = mockStore();
     store.downloadDocument.mockResolvedValue(pdfInput(name));
     await expect(new ExtractionService(store, provider).extract(context)).rejects.toMatchObject({ code: "EXTRACTION_INVALID" });
     expect(store.saveCompletedExtraction).not.toHaveBeenCalled();
+    expect(fakeFetch).toHaveBeenCalledOnce();
   });
 
   it.each([["image/png", "png"], ["image/jpeg", "jpg"], ["image/webp", "webp"]])("transports allowed image MIME %s as base64 input_image", async (mimeType, extension) => {
-    const fakeFetch = fetchResult(openaiResponse());
+    const fakeFetch = pipelineFetch();
     const bytes = new Uint8Array(readFileSync(new URL("../../fixtures/uploads/valid." + extension, import.meta.url)));
     await new OpenAIExtractionProvider(config, fakeFetch).extract({ mimeType, bytes });
     const body: unknown = JSON.parse(String(fakeFetch.mock.calls[0]?.[1]?.body));
@@ -96,13 +138,13 @@ describe("multimodal transport and B11 adversarial documents", () => {
   });
 
   it.each(["text/plain", "image/heic", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.ms-excel"])("B18 rejects unsupported MIME %s without calling provider", async mimeType => {
-    const fakeFetch = fetchResult(openaiResponse());
+    const fakeFetch = pipelineFetch();
     await expect(new OpenAIExtractionProvider(config, fakeFetch).extract({ ...pdfInput(), mimeType })).rejects.toMatchObject({ code: "EXTRACTION_UNSUPPORTED_INPUT", retryable: false });
     expect(fakeFetch).not.toHaveBeenCalled();
   });
 
   it("rejects wrong signatures, empty and oversized input before network", async () => {
-    const fakeFetch = fetchResult(openaiResponse());
+    const fakeFetch = pipelineFetch();
     const provider = new OpenAIExtractionProvider(config, fakeFetch);
     for (const bytes of [new Uint8Array(), new Uint8Array([1, 2, 3]), new Uint8Array(10 * 1024 * 1024 + 1)]) {
       await expect(provider.extract({ mimeType: "application/pdf", bytes })).rejects.toMatchObject({ code: "EXTRACTION_UNSUPPORTED_INPUT" });
@@ -151,8 +193,11 @@ describe("B09, B15-B17, B23 — provider errors and hostile responses", () => {
   });
 
   it("ignores protocol reasoning metadata but still validates the sole quote", async () => {
-    const raw = openaiResponse();
-    const provider = new OpenAIExtractionProvider(config, fetchResult({ ...raw, output: [{ type: "reasoning", summary: [] }, ...raw.output] }));
+    const raw = openaiResponse(interpretedFixture());
+    const fakeFetch = vi.fn<typeof fetch>()
+      .mockResolvedValueOnce(json({ ...raw, output: [{ type: "reasoning", summary: [] }, ...raw.output] }))
+      .mockResolvedValueOnce(json(openaiResponse(selection())));
+    const provider = new OpenAIExtractionProvider(config, fakeFetch);
     expect(validateExtraction(await provider.extract(pdfInput()))).toEqual(fixture().expected);
   });
 

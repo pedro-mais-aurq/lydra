@@ -1,0 +1,20 @@
+{
+  "lint": {
+    "exitCode": 0
+  },
+  "typecheck": {
+    "exitCode": 0
+  },
+  "test:unit": {
+    "exitCode": 0,
+    "total": 576,
+    "pass": 576,
+    "fail": 0,
+    "skip": 0
+  },
+  "build": {
+    "exitCode": 0,
+    "warnings": "Preexisting CSS start/end Autoprefixer compatibility warnings"
+  },
+  "realProviderCalls": 0
+}

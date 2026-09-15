@@ -5,7 +5,7 @@ export default defineConfig({
   oxc: { jsx: { runtime: "automatic" } },
   test: {
     environment: "node",
-    include: ["tests/**/*.test.ts"],
+    include: ["tests/**/*.test.ts", "src/modules/extraction/tests/unit/**/*.test.ts"],
     setupFiles: ["./tests/setup.ts"],
     testTimeout: 20000,
     hookTimeout: 30000,

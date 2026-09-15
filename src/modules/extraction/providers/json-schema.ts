@@ -1,9 +1,12 @@
 import "server-only";
 import { z } from "zod";
-import { extractedQuoteSchema } from "@/contracts";
+import { interpretationDraftSchema } from "../interpretation/interpretation";
+import { monetaryClassificationSchema } from "../classification/classification";
 
-type JsonSchema = {
+export type JsonSchema = {
   type?: string;
+  minimum?: number;
+  maximum?: number;
   properties?: Record<string, JsonSchema>;
   required?: string[];
   additionalProperties?: false;
@@ -12,12 +15,13 @@ type JsonSchema = {
   anyOf?: JsonSchema[];
 };
 
-/** Convert only the frozen contract's small Zod subset, fail on future drift.
- * This wire representation derives from @/contracts; no hand-maintained DTO. */
+/** Convert the internal B schema subset, failing on unsupported shape drift. */
 function toJsonSchema(schema: z.ZodType<unknown>): JsonSchema {
   if (schema instanceof z.ZodNullable) return { anyOf: [toJsonSchema(schema.unwrap()), { type: "null" }] };
   if (schema instanceof z.ZodString) return { type: "string" };
-  if (schema instanceof z.ZodNumber) return { type: "number" };
+  if (schema instanceof z.ZodNumber) return { type: schema.isInt ? "integer" : "number",
+    ...(schema.minValue === null ? {} : { minimum: schema.minValue }),
+    ...(schema.maxValue === null ? {} : { maximum: schema.maxValue }) };
   if (schema instanceof z.ZodLiteral && (typeof schema.value === "number" || typeof schema.value === "string")) {
     return { type: typeof schema.value, enum: [schema.value] };
   }
@@ -34,6 +38,25 @@ function toJsonSchema(schema: z.ZodType<unknown>): JsonSchema {
   throw new Error("Unsupported extraction schema.");
 }
 
-export function extractionJsonSchema(): JsonSchema {
-  return toJsonSchema(extractedQuoteSchema);
+export function interpretationJsonSchema(): JsonSchema {
+  return toJsonSchema(interpretationDraftSchema);
+}
+
+/** Historical import retained; it now describes the interpreter, never the canonical quote. */
+export const extractionJsonSchema = interpretationJsonSchema;
+
+export function classificationJsonSchema(candidateIds: readonly string[]): JsonSchema {
+  const schema = toJsonSchema(monetaryClassificationSchema);
+  const reference: JsonSchema = candidateIds.length === 0 ? { type: "null" } :
+    { anyOf: [{ type: "string", enum: [...candidateIds] }, { type: "null" }] };
+  function constrain(value: JsonSchema): void {
+    for (const [key, child] of Object.entries(value.properties ?? {})) {
+      if (key.endsWith("CandidateId") && value.properties) value.properties[key] = reference;
+      else constrain(child);
+    }
+    if (value.items) constrain(value.items);
+    value.anyOf?.forEach(constrain);
+  }
+  constrain(schema);
+  return schema;
 }

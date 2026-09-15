@@ -1,0 +1,83 @@
+{
+  "delivered_status": "B4 — REPROVADA",
+  "reason": "The official unit suite still contains legacy B expectations outside the authorized source scope. The prepared patch has not been applied to the delivered project.",
+  "commands": [
+    {
+      "command": "npm ci",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "install.log"
+    },
+    {
+      "command": "npm run lint",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "lint.log"
+    },
+    {
+      "command": "npm run typecheck",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "typecheck.log"
+    },
+    {
+      "command": "npm run test:unit",
+      "status": "FAIL",
+      "exitCode": 1,
+      "passed": 388,
+      "failed": 12,
+      "log": "unit-baseline.log"
+    },
+    {
+      "command": "npm run test:unit -- --config src/modules/extraction/tests/vitest.config.ts",
+      "status": "PASS",
+      "exitCode": 0,
+      "passed": 144,
+      "failed": 0,
+      "log": "unit-b4.log"
+    },
+    {
+      "command": "NEXT_TELEMETRY_DISABLED=1 npm run build",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "build.log"
+    },
+    {
+      "command": "npm run test:smoke",
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "smoke.log"
+    },
+    {
+      "command": "npm run test:integration",
+      "status": "NOT_EXECUTED",
+      "reason": "No disposable local Supabase configured; not needed for mocked B4 proof."
+    },
+    {
+      "command": "npm run test:security / test:smoke:security / test:migrations",
+      "status": "NOT_EXECUTED",
+      "reason": "External infrastructure; schema, RLS and Storage were frozen."
+    }
+  ],
+  "pending_patch_preview": {
+    "appliedToDelivery": false,
+    "scope": [
+      "tests/unit/extraction/provider.test.ts",
+      "tests/unit/extraction/semantics.test.ts",
+      "vitest.config.ts"
+    ],
+    "unitPassed": 544,
+    "unitFailed": 0,
+    "unitExitCode": 0,
+    "lintExitCode": 0,
+    "typecheckExitCode": 0,
+    "testExclusionsAdded": 0,
+    "testSkipsAdded": 0
+  },
+  "environment": {
+    "node": "v24.19.0",
+    "npm": "11.9.0",
+    "realProviderCalls": 0,
+    "realSupabaseCalls": 0
+  }
+}

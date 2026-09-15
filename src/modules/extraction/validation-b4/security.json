@@ -1,0 +1,12 @@
+{
+  "originalCredentialValuesInDelivery": 0,
+  "aiKeyOrCredentialFindingsInClientBundle": 0,
+  "excluded": [
+    ".env",
+    "node_modules",
+    ".next",
+    "supabase/.temp",
+    "tsconfig.tsbuildinfo"
+  ],
+  "realSecretsPrinted": false
+}

@@ -9,7 +9,7 @@ import { z } from "zod";
  * (retryable = false) so we never spin on a failure mode we don't recognize.
  */
 
-const providerErrorShape = z.object({ code: z.unknown().optional(), type: z.unknown().optional() }).passthrough();
+const providerErrorShape = z.object({ code: z.unknown().optional(), type: z.unknown().optional() });
 
 /** Documented, clearly transient failure codes reported by the provider. */
 const TRANSIENT_FAILURE_CODES: ReadonlySet<string> = new Set([
@@ -58,7 +58,7 @@ const PERSISTENT_429_CODES: ReadonlySet<string> = new Set([
   "project_spend_limit_exceeded",
 ]);
 
-const httpErrorEnvelope = z.object({ error: z.unknown().optional() }).passthrough();
+const httpErrorEnvelope = z.object({ error: z.unknown().optional() });
 
 function normalizedCode(value: unknown): string | null {
   if (typeof value !== "string") return null;

@@ -1,4 +1,5 @@
 import "server-only";
+import type { ExtractionTrace } from "../application/telemetry";
 
 /** One private document, no URL, conversation, other quote, or user prompt. */
 export interface ProviderExtractionInput {
@@ -7,5 +8,5 @@ export interface ProviderExtractionInput {
 }
 
 export interface ExtractionProvider {
-  extract(input: ProviderExtractionInput): Promise<unknown>;
+  extract(input: ProviderExtractionInput, trace?: ExtractionTrace): Promise<unknown>;
 }
