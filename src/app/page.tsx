@@ -1,144 +1,155 @@
 import Image from "next/image";
 import Link from "next/link";
+import heroArtwork from "@/assets/lydra-hero.webp";
 import { LydraLogo } from "@/components/brand/LydraLogo";
-import { LydianIllustrationPlaceholder } from "@/components/landing/LydianIllustrationPlaceholder";
+import { ComparisonJourney } from "@/components/landing/ComparisonJourney";
+import "./landing.css";
+
+const questions = [
+  {
+    question: "Que arquivos posso comparar?",
+    answer: "Envie de 2 a 4 orçamentos em PDF, PNG, JPEG ou WebP, com até 10 MB por arquivo.",
+  },
+  {
+    question: "E se uma proposta não informar o frete?",
+    answer: "O custo fica marcado como parcial. O valor cobrado pelo fornecedor só pode ser confirmado quando o frete for esclarecido.",
+  },
+  {
+    question: "Preciso enviar documentos para usar o simulador?",
+    answer: "Você pode digitar os valores no simulador e calcular no navegador. Também pode partir de um orçamento que já tenha comparado.",
+  },
+];
 
 export default function HomePage() {
   return (
-    <main className="landing">
-      <header className="site-header shell">
-        <LydraLogo priority />
-        <nav className="site-nav" aria-label="Navegação principal">
-          <a href="#sobre">Sobre</a>
-          <a href="#contato">Contato</a>
-          <Link className="button button-small button-outline" href="/comparisons/new">
-            Analisar orçamentos
+    <div className="landing">
+      <header className="landing-header">
+        <div className="landing-container landing-header-inner">
+          <LydraLogo priority />
+          <nav className="landing-nav" aria-label="Navegação principal">
+            <a href="#sobre">O projeto</a>
+            <a href="#como-funciona">Como funciona</a>
+            <Link href="/simulador">Simulador</Link>
+          </nav>
+          <Link className="button button-outline landing-header-action" href="/comparisons/new">
+            Comparar <span className="action-arrow" aria-hidden="true" />
           </Link>
-        </nav>
+        </div>
       </header>
 
-      <section className="hero shell" aria-labelledby="hero-title">
-        <div className="hero-copy">
-          <p className="eyebrow"><span className="eyebrow-rule" /> Infraestrutura para decidir</p>
-          <h1 id="hero-title">Decida antes que o dinheiro vá.</h1>
-          <p className="hero-lede">
-            Compare propostas, entenda o que realmente está sendo cobrado e identifique
-            o que ainda precisa ser esclarecido antes de decidir.
-          </p>
-          <div className="hero-actions">
-            <Link className="button button-primary" href="/comparisons/new">
-              Comparar orçamentos <span aria-hidden="true">↗</span>
-            </Link>
-            <a className="text-link" href="#sobre">Entender a Lydra <span aria-hidden="true">↓</span></a>
+      <main>
+        <section className="landing-hero" aria-labelledby="hero-title">
+          <div className="landing-hero-art" aria-hidden="true">
+            <Image src={heroArtwork} alt="" fill priority unoptimized sizes="100vw" />
           </div>
-          <p className="hero-note">Uma leitura criteriosa das propostas — sem transformar dúvida em certeza.</p>
-        </div>
-        <LydianIllustrationPlaceholder />
-        <div className="hero-stamp" aria-hidden="true">
-          <span>LD</span>
-          <span>01 / 04</span>
-        </div>
-      </section>
-
-      <section id="sobre" className="brand-intro shell" aria-labelledby="intro-title">
-        <div className="section-index">01 <span>/</span> Por que Lydra</div>
-        <div className="intro-grid">
-          <div>
-            <h2 id="intro-title">Uma proposta só parece simples até os detalhes mudarem a decisão.</h2>
-          </div>
-          <div className="intro-copy">
-            <p>
-              Orçamentos parecem comparáveis até que frete, prazo, condições e itens
-              ausentes mudem o que cada valor realmente significa.
-            </p>
-            <p>
-              A Lydra organiza essas informações, evidencia incertezas e coloca propostas
-              lado a lado para que a decisão aconteça antes do compromisso financeiro.
-            </p>
-            <p className="muted">A Lydra assiste a decisão. Não decide pelo usuário.</p>
-          </div>
-        </div>
-        <div className="architecture-strip" aria-hidden="true">
-          <span className="strip-block strip-block-tall" />
-          <span className="strip-line" />
-          <span className="strip-block" />
-          <span className="strip-arc" />
-          <span className="strip-block strip-block-wide" />
-          <span className="strip-line" />
-          <span className="strip-block strip-block-small" />
-        </div>
-      </section>
-
-      <section className="landing-cta shell" aria-labelledby="cta-title">
-        <div>
-          <p className="eyebrow"><span className="eyebrow-rule" /> O próximo movimento</p>
-          <h2 id="cta-title">Coloque as propostas lado a lado.</h2>
-        </div>
-        <Link className="button button-primary" href="/comparisons/new">
-          Começar uma comparação <span aria-hidden="true">↗</span>
-        </Link>
-      </section>
-
-      <section id="contato" className="contact shell" aria-labelledby="contact-title">
-        <div className="section-index">02 <span>/</span> Contato</div>
-        <div className="contact-content">
-          <h2 id="contact-title">Vamos construir decisões mais claras.</h2>
-          <p className="muted">Fale com a Neres web design pelos canais oficiais:</p>
-          <div className="contact-links" aria-label="Canais de contato">
-            <a href="https://wa.me/5531982481194" target="_blank" rel="noreferrer">
-              <span>Whatsapp</span>
-              <strong>+55 (31) 98248-1194</strong>
-            </a>
-            <a href="https://instagram.com/neres.web" target="_blank" rel="noreferrer">
-              <span>Instagram</span>
-              <strong>@neres.web</strong>
-            </a>
-            <a href="mailto:nerescode@gmail.com">
-              <span>Email</span>
-              <strong>nerescode@gmail.com</strong>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <footer className="site-footer shell" aria-labelledby="footer-title">
-        <div className="footer-main">
-          <div className="footer-brand">
-            <LydraLogo compact />
-            <p>Decida antes que o dinheiro vá.</p>
-            <div className="footer-links">
-              <a href="#sobre">Sobre</a>
-              <a href="#contato">Contato</a>
+          <div className="landing-container landing-hero-inner">
+            <div className="landing-hero-copy">
+              <p className="landing-kicker">Comparador de orçamentos</p>
+              <h1 id="hero-title">Decida antes<br />que o <em>dinheiro vá.</em></h1>
+              <p className="landing-hero-intro">Compare propostas, veja o que cada preço inclui e saiba o que confirmar antes de contratar.</p>
+              <div className="landing-hero-actions">
+                <Link className="button button-primary" href="/comparisons/new">
+                  Comparar orçamentos <span className="action-arrow" aria-hidden="true" />
+                </Link>
+                <a className="landing-text-link" href="#como-funciona">Conhecer a experiência <span className="action-arrow action-arrow-down" aria-hidden="true" /></a>
+              </div>
             </div>
           </div>
-          <div className="footer-cta">
-            <p className="eyebrow"><span className="eyebrow-rule" /> O próximo passo</p>
-            <h2 id="footer-title">Decisões melhores começam antes do compromisso.</h2>
+        </section>
+
+        <section className="landing-container landing-chapter landing-project" id="sobre" aria-labelledby="project-title">
+          <div>
+            <p className="landing-kicker">O projeto Lydra</p>
+            <h2 id="project-title">O preço é só<br />o <em>ponto de partida.</em></h2>
+            <p>A Lydra organiza as informações de cada orçamento para você entender o que está sendo oferecido, o que o preço cobre e o que ainda precisa perguntar ao fornecedor.</p>
+          </div>
+          <dl className="landing-project-details">
+            <div>
+              <dt>Custo e escopo</dt>
+              <dd>Veja quais itens e serviços foram incluídos e se o frete é cobrado à parte.</dd>
+            </div>
+            <div>
+              <dt>Prazo e condições</dt>
+              <dd>Confira os prazos de entrega, o pagamento e a garantia que cada proposta informa.</dd>
+            </div>
+            <div>
+              <dt>Evidências e pendências</dt>
+              <dd>Consulte trechos das propostas e veja quais informações precisam de confirmação.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <ComparisonJourney />
+
+        <section className="landing-simulator" id="simulador" aria-labelledby="simulator-title">
+          <div className="landing-container landing-chapter landing-simulator-layout">
+            <div>
+              <p className="landing-kicker">Simulador de compra</p>
+              <h2 id="simulator-title">Essa compra <em>cabe no teto?</em></h2>
+              <p>Teste um frete ou desconto diferente e veja quanto sobra do valor que você pode gastar. Basta digitar os valores.</p>
+              <Link className="button button-primary" href="/simulador">
+                Abrir simulador <span className="action-arrow" aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="landing-scenario">
+              <p className="landing-sample-label">Cenário de exemplo</p>
+              <dl>
+                <div><dt>Orçamento</dt><dd>R$ 4.500,00</dd></div>
+                <div><dt>Frete adicional</dt><dd>+ R$ 200,00</dd></div>
+                <div><dt>Desconto</dt><dd>− R$ 150,00</dd></div>
+                <div className="landing-scenario-total"><dt>Total estimado</dt><dd>R$ 4.550,00</dd></div>
+              </dl>
+            </div>
+          </div>
+        </section>
+
+        <section className="landing-container landing-chapter landing-faq" aria-labelledby="faq-title">
+          <div>
+            <p className="landing-kicker">Perguntas frequentes</p>
+            <h2 id="faq-title">Antes de <em>começar.</em></h2>
+          </div>
+          <div className="landing-faq-list">
+            {questions.map(({ question, answer }) => (
+              <details key={question}>
+                <summary>{question} <span aria-hidden="true">+</span></summary>
+                <p>{answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className="landing-start" aria-labelledby="start-title">
+          <div className="landing-container landing-chapter landing-start-layout">
+            <h2 id="start-title">Coloque as propostas <em>lado a lado.</em></h2>
             <Link className="button button-primary" href="/comparisons/new">
-              Começar uma comparação <span aria-hidden="true">↗</span>
+              Começar uma comparação <span className="action-arrow" aria-hidden="true" />
             </Link>
           </div>
-          <div className="footer-contact">
-            <span className="footer-label">Contato</span>
-            <a href="https://wa.me/5531982481194" target="_blank" rel="noreferrer">Whatsapp</a>
-            <a href="https://instagram.com/neres.web" target="_blank" rel="noreferrer">@neres.web</a>
-            <a href="mailto:nerescode@gmail.com">nerescode@gmail.com</a>
+        </section>
+      </main>
+
+      <footer id="contato" className="landing-footer">
+        <div className="landing-container">
+          <div className="landing-footer-main">
+            <LydraLogo compact />
+            <nav aria-label="Links da Lydra">
+              <a href="#sobre">O projeto</a>
+              <a href="#como-funciona">Como funciona</a>
+              <Link href="/simulador">Simulador</Link>
+            </nav>
+            <div className="landing-footer-contact">
+              <strong>Contato</strong>
+              <a href="mailto:nerescode@gmail.com">nerescode@gmail.com</a>
+              <a href="https://wa.me/5531982481194">WhatsApp</a>
+              <a href="https://instagram.com/neres.web">Instagram</a>
+            </div>
           </div>
-        </div>
-        <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Lydra</span>
-          <div className="built-by">
-            <span>Projeto desenvolvido por</span>
-            <Image
-              src="/brand/neres-web-design.svg"
-              alt="Neres web design"
-              width={52}
-              height={52}
-            />
-            <strong>Neres web design</strong>
+          <div className="landing-footer-base">
+            <span>© {new Date().getFullYear()} Lydra</span>
+            <span>Desenvolvido por <strong>Neres web design</strong></span>
           </div>
         </div>
       </footer>
-    </main>
+    </div>
   );
 }

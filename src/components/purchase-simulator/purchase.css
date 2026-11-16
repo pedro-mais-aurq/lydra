@@ -1,0 +1,143 @@
+.purchase-shell { max-width: 1170px; margin-inline: auto; }
+.purchase-page .purchase-shell { padding-block: clamp(2.5rem, 7vw, 6rem) 4rem; }
+
+.purchase-heading h1 {
+  max-width: 100%;
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  line-height: 1;
+  margin-bottom: 0.9rem;
+}
+
+.purchase-heading > p {
+  max-width: 36rem;
+  color: var(--lydra-quiet);
+  margin-bottom: 2rem;
+}
+
+.purchase-calculator {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  border: 1px solid var(--lydra-line);
+}
+
+.purchase-form {
+  display: grid;
+  align-content: start;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.35rem;
+  padding: clamp(1.15rem, 3.2vw, 2.5rem);
+  background: var(--lydra-paper);
+}
+
+.purchase-field label {
+  display: block;
+  margin-bottom: 0.42rem;
+  color: var(--lydra-deep);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.purchase-field input, .purchase-field select {
+  width: 100%;
+  min-height: 45px;
+  padding: 0.65rem 0.7rem;
+  border: 1px solid var(--lydra-quiet);
+  border-radius: var(--radius);
+  color: var(--lydra-deep);
+  background: var(--lydra-paper);
+  font: inherit;
+}
+
+.purchase-field input::placeholder { color: var(--lydra-quiet); }
+.purchase-field :focus-visible { outline: 2px solid var(--lydra-plum); outline-offset: 3px; }
+.purchase-field input[aria-invalid="true"] { border-color: var(--lydra-warning); }
+
+.purchase-error {
+  margin: 0.45rem 0 0;
+  color: var(--lydra-warning);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.purchase-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.2rem;
+}
+
+.purchase-actions button { cursor: pointer; }
+
+.purchase-output {
+  padding: clamp(1.3rem, 3.4vw, 2.6rem);
+  background: var(--lydra-deep);
+  color: var(--lydra-ivory);
+}
+
+.purchase-output > h2 {
+  margin-bottom: 0.6rem;
+  font: 700 0.76rem/1.5 Arial, Helvetica, sans-serif;
+  letter-spacing: 0.09em;
+  color: var(--lydra-sand);
+  text-transform: uppercase;
+}
+
+.purchase-output p:last-child { margin-bottom: 0; }
+
+.purchase-output .purchase-amount {
+  margin: 0.8rem 0;
+  font: 400 clamp(1.95rem, 3.9vw, 3.1rem)/1.05 Georgia, serif;
+  letter-spacing: -0.056em;
+  overflow-wrap: anywhere;
+}
+
+.purchase-balance {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--lydra-sand);
+  font-size: 0.89rem;
+  overflow-wrap: anywhere;
+}
+
+.purchase-balance strong { font-size: 1.15rem; }
+
+.purchase-page-links {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  font-size: 0.88rem;
+}
+
+.purchase-page-links p { color: var(--lydra-quiet); margin: 0; }
+.purchase-page-links a { color: var(--lydra-plum); text-underline-offset: 0.2em; }
+
+.comparison-simulation {
+  border-top: 1px solid var(--lydra-line);
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.comparison-simulation summary {
+  padding-block: 0.4rem;
+  font-weight: 700;
+  color: var(--lydra-plum);
+}
+
+.comparison-simulation > p { margin-block: 0.45rem 1rem; color: var(--lydra-quiet); }
+.purchase-proposal { max-width: 28rem; margin-bottom: 1.1rem; }
+
+@media (max-width: 860px) {
+  .purchase-calculator { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .purchase-form { grid-template-columns: 1fr; }
+  .purchase-actions .button { min-height: 44px; }
+}

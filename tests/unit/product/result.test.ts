@@ -20,6 +20,21 @@ describe("product result presentation", () => {
     supplier.supplierName = null; supplier.deliveryDays = null; supplier.costAssessment = { displayedTotal: null, knownComparableTotal: null, completeness: "unknown", reasons: [] };
     const html = renderToStaticMarkup(createElement(ComparisonResultView, { detail })); expect(html).toContain("Fornecedor não informado"); expect(html).not.toMatch(/R\$\s*(?:&nbsp;)?0,00/);
   });
+  it("offers the scenario for valid BRL proposals without changing the comparison", () => {
+    const detail = completedDetail();
+    const [known, unpriced, unknownCurrency] = detail.result!.suppliers;
+    unpriced!.costAssessment.displayedTotal = null;
+    unknownCurrency!.currency = "UNKNOWN";
+    const before = structuredClone(detail);
+    const html = renderToStaticMarkup(createElement(ComparisonResultView, { detail }));
+
+    expect(html).toContain("Simular custo da compra");
+    expect(html).toContain("Preencher manualmente");
+    expect(html).toContain('<option value="' + known!.documentId + '">');
+    expect(html).not.toContain('<option value="' + unpriced!.documentId + '">');
+    expect(html).not.toContain('<option value="' + unknownCurrency!.documentId + '">');
+    expect(detail).toEqual(before);
+  });
   it("preserves normalized groups and their exact/probable/unmatched labels", () => {
     const detail = completedDetail();
     detail.result!.normalizedItems = [

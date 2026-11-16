@@ -4,7 +4,7 @@ import { createServerClient, type SetAllCookies } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 /**
- * Keeps the Supabase session cookie fresh on every request so a client's
+ * Keeps the Supabase session cookie fresh on comparison requests so a client's
  * anonymous session survives across page/API navigations. Uses only the
  * public URL and anon key - never a service role key.
  */
@@ -47,5 +47,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|simulador(?:/|$)).*)"],
 };

@@ -1,3 +1,4 @@
+import { ComparisonPurchaseSimulator } from "@/components/purchase-simulator/ComparisonPurchaseSimulator";
 import type { EvidenceRef, ExtractedQuote, SupplierComparison } from "@/contracts";
 import type { ComparisonDetail } from "@/modules/product/api";
 
@@ -70,5 +71,6 @@ export function ComparisonResultView({ detail }: { detail: ComparisonDetail }) {
         return <div key={supplier.documentId}><h4>{name(supplier)}</h4>{quote ? Object.entries(quote.evidence).map(([field, evidence]) => evidence ? <details key={field}><summary>{labels[field] ?? field}</summary><Evidence value={evidence} /></details> : null) : <p>Evidências indisponíveis.</p>}{quote && quote.observations.length > 0 ? <><h4>Observações do documento</h4><ul>{quote.observations.map((observation, index) => <li key={index}>{observation}</li>)}</ul></> : null}</div>;
       })}</section>
     </div>
+    <ComparisonPurchaseSimulator detail={detail} />
   </section>;
 }
