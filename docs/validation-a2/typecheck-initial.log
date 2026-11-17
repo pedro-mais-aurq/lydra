@@ -1,8 +1,0 @@
-npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
-
-> lydra-mvp-foundation@0.1.0 typecheck
-> next typegen && tsc --noEmit
-
-Generating route types...
-✓ Route types generated successfully
-tests/integration/http.test.ts(104,28): error TS2683: 'this' implicitly has type 'any' because it does not have a type annotation.

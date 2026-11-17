@@ -55,7 +55,7 @@ function NewComparison() {
     } finally { setBusy(false); submitting.current = false; }
   };
   return <div className="workspace-main shell">
-    <div className="workspace-intro"><div><p className="workspace-kicker">01 / Ponto de partida</p><h1>O que você precisa comparar?</h1><p>Reúna as propostas. A Lydra vai organizar o que está claro e marcar o que ainda precisa ser confirmado.</p></div></div>
+    <div className="workspace-intro"><div><p className="workspace-kicker">01 / Ponto de partida</p><h1>O que você precisa comparar?</h1><p>Reúna as propostas. A Lydra vai organizar o que está claro e marcar o que ainda precisa ser confirmado.</p><Link href="/comparisons/manual">Digitar valores das propostas</Link></div></div>
     <div className="workspace-grid">
       <section className="workspace-card" aria-labelledby="comparison-details-title">
         <p className="workspace-kicker">Nova comparação</p><h2 id="comparison-details-title">Dê um nome a esta decisão</h2>

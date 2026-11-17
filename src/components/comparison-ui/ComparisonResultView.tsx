@@ -24,7 +24,7 @@ export function shippingText(quote: ExtractedQuote | null) {
 function Evidence({ value }: { value: EvidenceRef }) {
   return <blockquote className="evidence-placeholder"><p>{value.text}</p><footer>{value.page === null ? "Página não informada" : `Página ${value.page}`}</footer></blockquote>;
 }
-export function ComparisonResultView({ detail }: { detail: ComparisonDetail }) {
+export function ComparisonResultView({ detail, variant = "documents" }: { detail: ComparisonDetail; variant?: "documents" | "simulation" | "manual" }) {
   const result = detail.result;
   if (!result) return <p role="alert">O resultado não está disponível.</p>;
   const supplierFor = (id: string | null) => result.suppliers.find((supplier) => supplier.documentId === id);
@@ -33,7 +33,7 @@ export function ComparisonResultView({ detail }: { detail: ComparisonDetail }) {
   const fastest = supplierFor(result.highlights.fastestKnownDeliveryDocumentId);
   const quoteFor = (id: string) => detail.documents.find((document) => document.id === id)?.extractedData ?? null;
   return <section className="result-preview" aria-labelledby="result-title">
-    <div className="result-preview-heading"><div><p className="workspace-kicker">04 / Área de decisão</p><h2 id="result-title">{detail.title}</h2></div><span className="result-state">Comparação concluída</span></div>
+    <div className="result-preview-heading"><div><p className="workspace-kicker">04 / Área de decisão</p><h2 id="result-title">{detail.title}</h2></div><span className="result-state">{{ documents: "Comparação concluída", simulation: "Resultado simulado", manual: "Dados informados manualmente" }[variant]}</span></div>
     <div className="decision-summary">
       <div className="decision-metric"><span className="metric-label">Menor custo completo conhecido</span><strong className="metric-value">{cheapestComplete ? money(cheapestComplete.costAssessment.knownComparableTotal, cheapestComplete.currency) : "Não identificado"}</strong><span className="metric-note">{cheapestComplete ? name(cheapestComplete) : "Nenhum destaque de custo completo disponível"}</span></div>
       <div className="decision-metric"><span className="metric-label">Menor custo conhecido</span><strong className="metric-value">{cheapestKnown ? money(cheapestKnown.costAssessment.knownComparableTotal, cheapestKnown.currency) : "Não identificado"}</strong><span className="metric-note">{cheapestKnown ? `${name(cheapestKnown)} · ${completeness[cheapestKnown.costAssessment.completeness]}` : "Nenhum destaque de custo disponível"}</span></div>

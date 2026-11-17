@@ -17,7 +17,7 @@ const documentSchema = z.object({
   extractedData: extractedQuoteSchema.nullable(), extractionSchemaVersion: z.literal(1).nullable(),
   errorCode: z.string().nullable(), createdAt: z.string(), updatedAt: z.string(),
 });
-const detailSchema = comparisonSchema.extend({ documents: z.array(documentSchema) });
+export const detailSchema = comparisonSchema.extend({ documents: z.array(documentSchema) });
 const errorSchema = z.object({ error: z.object({ code: z.enum(ERROR_CODES), message: z.string(), retryable: z.boolean(), details: z.unknown().nullable() }), requestId: z.string() });
 
 export class ProductError extends Error {

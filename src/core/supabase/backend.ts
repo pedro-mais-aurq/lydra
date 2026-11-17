@@ -6,7 +6,7 @@ import { createClient } from "@supabase/supabase-js";
  * service_role bypasses RLS: every repository operation must scope the owner.
  */
 export function createSupabaseBackendClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!url || !key) throw new Error("Missing server-side Supabase configuration.");
   return createClient(url, key, {

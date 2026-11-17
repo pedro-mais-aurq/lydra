@@ -1,4 +1,5 @@
 import { resolveUser } from "./core/auth/resolve-user";
+import { getSupabasePublicConfig } from "./core/supabase/public-config";
 import { respondError } from "./core/errors/respond";
 import { createServerClient, type SetAllCookies } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
@@ -11,14 +12,10 @@ import { NextResponse, type NextRequest } from "next/server";
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request });
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const config = getSupabasePublicConfig();
+  if (!config) return response;
 
-  if (!url || !anonKey) {
-    return response;
-  }
-
-  const supabase = createServerClient(url, anonKey, {
+  const supabase = createServerClient(config.url, config.key, {
     cookies: {
       getAll() {
         return request.cookies.getAll();
@@ -47,5 +44,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|simulador(?:/|$)).*)"],
+  matcher: ["/comparisons/:path*", "/api/comparisons/:path*"],
 };

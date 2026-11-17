@@ -1,0 +1,23 @@
+.structured-shell { max-width: 1230px; margin-inline: auto; }
+.structured-shell .workspace-intro > div > p { max-width: 37rem; }
+.structured-shell .workspace-intro h1 { font-size: clamp(2.6rem, 6vw, 5.3rem); }
+.structured-form, .comparison-availability { margin-block: 1.5rem; }
+.structured-form fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.structured-form legend { padding: 0; margin-bottom: .65rem; font-weight: 700; }
+.simulation-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+.simulation-options label { display: flex; align-items: center; gap: .75rem; padding: 1rem; border: 1px solid var(--lydra-line); cursor: pointer; }
+.simulation-options label:has(input:checked) { background: var(--lydra-ivory); border-color: var(--lydra-plum); }
+.simulation-options input { width: 1.1rem; height: 1.1rem; accent-color: var(--lydra-plum); }
+.simulation-options label span { display: block; }
+.simulation-options label span span { color: var(--lydra-quiet); font-size: .88rem; margin-top: .2rem; }
+.structured-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.2rem; }
+.structured-actions button { cursor: pointer; }
+.structured-form [role=alert] { margin: .8rem 0 0; color: var(--lydra-warning); }
+.structured-announcement { margin-bottom: .65rem; }
+.structured-announcement:empty { margin: 0; }
+.manual-rows { display: grid; gap: 1.25rem 2rem; grid-template-columns: repeat(2,minmax(0,1fr)); }
+.manual-rows fieldset { display: flex; flex-direction: column; gap: .85rem; }
+.manual-rows legend { width: 100%; border-bottom: 1px solid var(--lydra-line); padding-bottom: .5rem; }
+.manual-rows label { font-size: .88rem; font-weight: 700; }
+.manual-rows input, .manual-rows select { display: block; width: 100%; min-height: 44px; margin-top: .35rem; padding: .65rem; font: inherit; font-weight: 400; border: 1px solid var(--lydra-quiet); color: var(--lydra-deep); background: var(--lydra-paper); }
+@media (max-width: 690px) { .manual-rows, .simulation-options { grid-template-columns: 1fr; } }

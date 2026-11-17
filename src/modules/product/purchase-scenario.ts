@@ -34,7 +34,7 @@ export function scenarioInputFromQuote(value: number | null): string {
   return quoteAmount.format(value);
 }
 
-function parseAmount(raw: string): number | null {
+export function parseAmount(raw: string): number | null {
   const value = raw.trim().replace(/^R\$\s*/i, "");
   const match =
     /^(\d{1,12}|\d{1,3}(?:\.\d{3}){1,3})(?:,(\d{1,2}))?$/.exec(value)

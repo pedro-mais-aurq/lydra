@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import heroArtwork from "@/assets/lydra-hero.webp";
 import { LydraLogo } from "@/components/brand/LydraLogo";
+import { LydraReviews } from "@/components/landing/LydraReviews";
 import { ComparisonJourney } from "@/components/landing/ComparisonJourney";
 import "./landing.css";
 
@@ -30,8 +31,9 @@ export default function HomePage() {
             <a href="#sobre">O projeto</a>
             <a href="#como-funciona">Como funciona</a>
             <Link href="/simulador">Simulador</Link>
+            <Link href="/conta">Minha conta</Link>
           </nav>
-          <Link className="button button-outline landing-header-action" href="/comparisons/new">
+          <Link className="button button-outline landing-header-action" href="#modos">
             Comparar <span className="action-arrow" aria-hidden="true" />
           </Link>
         </div>
@@ -51,7 +53,7 @@ export default function HomePage() {
                 <Link className="button button-primary" href="/comparisons/new">
                   Comparar orçamentos <span className="action-arrow" aria-hidden="true" />
                 </Link>
-                <a className="landing-text-link" href="#como-funciona">Conhecer a experiência <span className="action-arrow action-arrow-down" aria-hidden="true" /></a>
+                <a className="landing-text-link" href="/simulacao">Experimentar o modo simulado <span className="action-arrow" aria-hidden="true" /></a>
               </div>
             </div>
           </div>
@@ -81,6 +83,29 @@ export default function HomePage() {
 
         <ComparisonJourney />
 
+        <section id="modos" className="landing-container landing-chapter landing-editorial" aria-labelledby="mode-title">
+          <figure>
+            <Image src="/images/conferencia-de-orcamentos.webp" width={1440} height={960}
+              alt="Mãos de uma pessoa conferindo duas propostas impressas à mesa." sizes="(max-width: 800px) 90vw, 45vw" />
+          </figure>
+          <div>
+            <p className="landing-kicker">Escolha uma comparação</p>
+            <h2 id="mode-title">Das propostas <em>aos números.</em></h2>
+            <div className="landing-mode-list">
+              <div>
+                <h3>Comparação real</h3>
+                <p>Use suas próprias propostas. Envie PDFs ou imagens ou digite os valores para comparar custos, prazos e frete.</p>
+                <Link className="button button-primary" href="/comparisons/new">Comparar propostas reais <span className="action-arrow" aria-hidden="true" /></Link>
+              </div>
+              <div>
+                <h3>Comparação simulada</h3>
+                <p>Escolha propostas fictícias para experimentar como a análise lida com frete incluso, adicional ou a confirmar.</p>
+                <Link className="button button-outline" href="/simulacao">Testar modo simulado <span className="action-arrow" aria-hidden="true" /></Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="landing-simulator" id="simulador" aria-labelledby="simulator-title">
           <div className="landing-container landing-chapter landing-simulator-layout">
             <div>
@@ -101,6 +126,26 @@ export default function HomePage() {
               </dl>
             </div>
           </div>
+        </section>
+
+        <section id="reputacao" className="landing-container landing-chapter landing-trust" aria-labelledby="trust-title">
+          <div>
+            <p className="landing-kicker">Antes de contratar</p>
+            <h2 id="trust-title">Confira a <em>reputação.</em></h2>
+            <figure>
+              <Image src="/images/propostas-sobre-a-mesa.webp" width={1440} height={960}
+                alt="Propostas de orçamento, lápis e régua sobre uma mesa de tons terrosos." sizes="(max-width: 800px) 90vw, 45vw" />
+            </figure>
+            <div className="trust-resources">
+              <a href="https://www.reclameaqui.com.br/" target="_blank" rel="noreferrer">
+                <strong>Reclame AQUI</strong><span>Consulte reclamações e respostas da empresa.</span>
+              </a>
+              <a href="https://www.google.com/maps" target="_blank" rel="noreferrer">
+                <strong>Avaliações no Google Maps</strong><span>Busque pelo nome e pela cidade do fornecedor.</span>
+              </a>
+            </div>
+          </div>
+          <LydraReviews />
         </section>
 
         <section className="landing-container landing-chapter landing-faq" aria-labelledby="faq-title">
@@ -136,6 +181,7 @@ export default function HomePage() {
               <a href="#sobre">O projeto</a>
               <a href="#como-funciona">Como funciona</a>
               <Link href="/simulador">Simulador</Link>
+              <a href="#reputacao">Reputação e avaliações</a>
             </nav>
             <div className="landing-footer-contact">
               <strong>Contato</strong>

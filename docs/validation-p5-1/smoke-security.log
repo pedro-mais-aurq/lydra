@@ -1,6 +1,0 @@
-npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
-
-> lydra-mvp-foundation@0.1.0 test:smoke:security
-> node scripts/run-local-integration.mjs --smoke
-
-INTEGRATION_INFRASTRUCTURE_REQUIRED: local Supabase status failed; security tests were not validated.

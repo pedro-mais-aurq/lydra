@@ -1,1 +1,0 @@
-PASS: 3 production /process HTTP checks (no session, invalid id before auth, malformed session cookie).
