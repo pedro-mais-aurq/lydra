@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import vinext from "vinext";
 import { defineConfig } from "vite";
 import hosting from "./.openai/hosting.json";
@@ -12,6 +13,11 @@ export default defineConfig(async () => {
 
   return {
     server: managed ? { host: "0.0.0.0", allowedHosts: ["terminal.local"] } : undefined,
+    resolve: {
+      alias: {
+        "#lydra-review-binding": fileURLToPath(new URL("./db/review-binding.cloudflare.ts", import.meta.url)),
+      },
+    },
     plugins: [
       vinext(),
       sites({ mockAuth: !managed }),

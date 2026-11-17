@@ -2,7 +2,8 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 
-type Reviews = {
+type Reviews = { available: false } | {
+  available: true;
   count: number;
   average: number | null;
   notes: Array<{ score: number; note: string; date: string }>;
@@ -67,17 +68,18 @@ export function LydraReviews() {
     <div className="landing-reviews">
       <h3>Avaliações da Lydra</h3>
       {loading && <p>Carregando avaliações…</p>}
-      {reviews && <p>{reviews.average === null ? "Ainda não há avaliações." : (
+      {reviews?.available === false && <p>As avaliações estão disponíveis no ChatGPT Sites.</p>}
+      {reviews?.available && <p>{reviews.average === null ? "Ainda não há avaliações." : (
         <><strong>{number.format(reviews.average)} de 5</strong> · {reviews.count} {reviews.count === 1 ? "avaliação" : "avaliações"}</>
       )}</p>}
-      {reviews && reviews.notes.length > 0 && (
+      {reviews?.available && reviews.notes.length > 0 && (
         <ul className="review-notes">
           {reviews.notes.map(({ score, note, date }, index) => (
             <li key={date + index}><strong>{score} de 5</strong><p>{note}</p></li>
           ))}
         </ul>
       )}
-      {reviews?.canReview && (
+      {reviews?.available && reviews.canReview && (
         <form className="review-form" method="post" onSubmit={save}>
           <label>
             Sua nota

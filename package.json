@@ -12,7 +12,8 @@
     "start": "node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js dev --config dist/server/wrangler.json --local --persist-to .wrangler/state --ip 127.0.0.1 --inspector-port 0",
     "db:generate": "drizzle-kit generate",
     "typecheck": "tsc --noEmit",
-    "test:unit": "vitest run tests/unit"
+    "test:unit": "vitest run tests/unit",
+    "build:vercel": "next build"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",
@@ -46,5 +47,8 @@
     "miniflare": {
       "sharp": "0.35.4"
     }
+  },
+  "imports": {
+    "#lydra-review-binding": "./db/review-binding.node.ts"
   }
 }
